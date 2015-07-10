@@ -4,7 +4,8 @@ from field import *
 from team import *
 from slime import *
 
-class Game():
+
+class Game:
     def __init__(self):
         self.teamA = Team(True)
         self.teamB = Team(False)

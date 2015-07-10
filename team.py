@@ -1,16 +1,19 @@
 __author__ = 'Dev1'
 
-class TeamType():
+
+class TeamType:
     pass
 
-class Gauge():
+
+class Gauge:
     def __init__(self, team, max=25):
         self.team = team
         self.maxValue = max
         self.value = 0
         self.complete = 0
 
-class Team():
+
+class Team:
     A = TeamType()
     B = TeamType()
     def __init__(self, teamType):
