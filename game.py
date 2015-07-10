@@ -46,10 +46,8 @@ class Game():
                 ######################################################
                 # 2^32-1을 0~31 의 합으로 바꾸기!
 
-
         for position in targetPosition:
             position.slime = 0
-
 
     def changeEdges(self):
         for slime in self.slime:

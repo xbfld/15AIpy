@@ -29,3 +29,13 @@ class Team():
             if i>=32:
                 return -1
         return i
+
+    def discardSlimes(self, sid):
+        div, mod = sid, 0
+        for i in range(32):
+            div, mod = divmod(div, 2)
+            if mod is 0:
+                continue
+            self.slime[i] = None
+
+
