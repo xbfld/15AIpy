@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 __author__ = 'Dev1'
 
 from team import Team, TeamType
@@ -23,7 +24,7 @@ class Area:
         self.team = teamType
 
     def contains(self, point):
-        pass #¹Ì±¸Çö
+        pass #ë¯¸êµ¬í˜„
 
 
 class Edge:

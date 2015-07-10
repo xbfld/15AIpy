@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 __author__ = 'Dev1'
 
 from field import *
@@ -13,14 +14,15 @@ class Game:
         self.slime = []
 
     def moveSlimes(self):
-        # ²ÀÁöÁ¡ SID ÃÊ±âÈ­
+        # ê¼­ì§€ì  SID ì´ˆê¸°í™”
         for slime in self.slime:
             x, y = slime.position
             self.field.getPoint(x,y)[slime.team] = 0
 
-        # ½½¶óÀÓ ¿Å±â±â
+        # ìŠ¬ë¼ì„ ì˜®ê¸°ê¸°
         for slime in self.slime:
             slime.hasMoved = False
+            # TODO: ì•„ë˜ ë¶€ë¶„ ìŠ¬ë¼ì„ ë‚´ë¶€ë¡œ ë„£ê¸°
             x, y = slime.position
             dx, dy = Slime.directionToCoord[slime.direction]
             nx, ny = x+dx, y+dy
@@ -37,7 +39,7 @@ class Game:
 
     def overlapPenalty(self):
         targetPosition =[]
-        # Ãæµ¹ÇÑ ½½¶óÀÓÀÇ À§Ä¡¸¦ ±¸ÇÑ´Ù.
+        # ì¶©ëŒí•œ ìŠ¬ë¼ì„ì˜ ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
         for aSlime in self.teamA.slime:
             if aSlime is None:
                 continue
@@ -58,7 +60,7 @@ class Game:
             point = slime.position
             antiDirection = (slime.direction+2)%4
             edge = self.field.getEdge(point, antiDirection)
-            # ¹Ì±¸Çö
+            # ë¯¸êµ¬í˜„
 
     def createSlime(self, teamType):
         team = self.teamA if teamType == Team.A else self.teamB
@@ -72,11 +74,11 @@ class Game:
 
 
     # def removeSlime(self, slime):
-    #     # ÇÊµå¿¡¼­ ½½¶óÀÓ Á¦°Å
+    #     # í•„ë“œì—ì„œ ìŠ¬ë¼ì„ ì œê±°
     #     x, y = slime.position
     #     self.field.getPoint(x,y)[slime.team] &= ~SID
     #
-    #     # ÇÊµå¿¡¼­ ½½¶óÀÓ °æ·Î Á¦°Å
+    #     # í•„ë“œì—ì„œ ìŠ¬ë¼ì„ ê²½ë¡œ ì œê±°
     #     for edges in self.field.horizontalEdge:
     #         for edge in edges:
     #             edge.removePath(SID, slime.team)
@@ -84,14 +86,14 @@ class Game:
     #         for edge in edges:
     #             edge.removePath(SID, slime.team)
     #
-    #     # ½½¶óÀÓ Á¤º¸ Á¦°Å
+    #     # ìŠ¬ë¼ì„ ì •ë³´ ì œê±°
     #     SID = slime.SID
     #     team = self.teamA if slime.team == Team.A else self.teamB
     #     team.slime[SID] = None
     #     self.slime.remove(slime)
 
     def removeSlimes(self, SID, team):
-        # ÇÊµå¿¡¼­ ½½¶óÀÓ °æ·Î Á¦°Å
+        # í•„ë“œì—ì„œ ìŠ¬ë¼ì„ ê²½ë¡œ ì œê±°
         for edges in self.field.horizontalEdge:
             for edge in edges:
                 edge.removePath(SID)
@@ -99,8 +101,11 @@ class Game:
             for edge in edges:
                 edge.removePath(SID)
 
-        # ½½¶óÀÓ Á¤º¸ Á¦°Å
+        # ìŠ¬ë¼ì„ ì •ë³´ ì œê±°
         team = self.teamA if team == Team.A else self.teamB
         #team.slime[SID] = None
         team.discardSlimes(SID)
-        #self.slime.remove(slime) -> ¹«½¼ ÀÇ¹Ì?
+        #self.slime.remove(slime) -> ë¬´ìŠ¨ ì˜ë¯¸?
+
+    def ë”ë¯¸(self):
+        pass
