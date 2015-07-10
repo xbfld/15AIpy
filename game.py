@@ -48,7 +48,6 @@ class Game:
             if SID_B != 0:
                 targetPosition.append(pos)
 
-
         for position in targetPosition:
             position.slime = 0
 
@@ -71,7 +70,6 @@ class Game:
 
         slime = team.addSlime()
         self.slime.append(slime)
-
 
     # def removeSlime(self, slime):
     #     # 필드에서 슬라임 제거
@@ -105,7 +103,3 @@ class Game:
         team = self.teamA if team == Team.A else self.teamB
         #team.slime[SID] = None
         team.discardSlimes(SID)
-        #self.slime.remove(slime) -> 무슨 의미?
-
-    def 더미(self):
-        pass
