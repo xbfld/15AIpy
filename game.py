@@ -37,15 +37,15 @@ class Game:
 
     def overlapPenalty(self):
         targetPosition =[]
+        # 충돌한 슬라임의 위치를 구한다.
         for aSlime in self.teamA.slime:
             if aSlime is None:
                 continue
-            x, y = aSlime.position
-            SID_B = self.field.getPoint(x, y)[Team.B]
+            pos = aSlime.position
+            SID_B = self.field.getPoint(*pos)[Team.B]
             if SID_B != 0:
-                SID_A = self.field.getPoint(x, y)[Team.A]
-                ######################################################
-                # 2^32-1을 0~31 의 합으로 바꾸기!
+                targetPosition.append(pos)
+
 
         for position in targetPosition:
             position.slime = 0
@@ -62,13 +62,14 @@ class Game:
 
     def createSlime(self, teamType):
         team = self.teamA if teamType == Team.A else self.teamB
-        SID = team.minimumEmptySID()
-        position = team.spawn
-        direction = 0 if teamType == Team.A else 2
+        # SID = team.minimumEmptySID()
+        # position = team.spawn
+        # direction = 0 if teamType == Team.A else 2
+        # team.slime[SID] = slime
 
-        slime = Slime(teamType, SID, position, direction)
+        slime = team.addSlime()
         self.slime.append(slime)
-        team.slime[SID] = slime
+
 
     # def removeSlime(self, slime):
     #     # 필드에서 슬라임 제거
@@ -100,5 +101,6 @@ class Game:
 
         # 슬라임 정보 제거
         team = self.teamA if team == Team.A else self.teamB
-        team.slime[SID] = None
-        self.slime.remove(slime)
+        #team.slime[SID] = None
+        team.discardSlimes(SID)
+        #self.slime.remove(slime) -> 무슨 의미?
